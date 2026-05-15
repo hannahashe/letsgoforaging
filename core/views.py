@@ -1,5 +1,13 @@
 from django.shortcuts import get_object_or_404, render
+from datetime import date
 from .models import BlogPost, Event, GalleryImage, Review
+
+
+def site_context():
+    """Return shared context used across simple site pages."""
+    return {
+        "current_year": date.today().year,
+    }
 
 
 def home(request):
@@ -25,6 +33,7 @@ def home(request):
     )[:3]
 
     context = {
+        **site_context(),
         "featured_event": featured_event,
         "featured_post": featured_post,
         "featured_images": featured_images,
@@ -36,12 +45,12 @@ def home(request):
 
 def about(request):
     """Display the about page."""
-    return render(request, "core/about.html")
+    return render(request, "core/about.html", site_context())
 
 
 def contact(request):
     """Display the contact page."""
-    return render(request, "core/contact.html")
+    return render(request, "core/contact.html", site_context())
 
 
 def gallery(request):
@@ -51,7 +60,9 @@ def gallery(request):
     return render(
         request,
         "core/gallery.html",
-        {"images": images},
+        {
+            **site_context(),
+            "images": images},
     )
 
 
@@ -62,7 +73,10 @@ def event_list(request):
     return render(
         request,
         "core/event_list.html",
-        {"events": events},
+        {
+            **site_context(),
+            "events": events
+        },
     )
 
 
@@ -73,7 +87,10 @@ def event_detail(request, slug):
     return render(
         request,
         "core/event_detail.html",
-        {"event": event},
+        {
+            **site_context(),
+            "event": event
+        },
     )
 
 
@@ -84,7 +101,10 @@ def blog_list(request):
     return render(
         request,
         "core/blog_list.html",
-        {"posts": posts},
+        {
+            **site_context(),
+            "posts": posts
+        },
     )
 
 
@@ -95,5 +115,8 @@ def blog_detail(request, slug):
     return render(
         request,
         "core/blog_detail.html",
-        {"post": post},
+        {
+            **site_context(),
+            "post": post
+        },
     )

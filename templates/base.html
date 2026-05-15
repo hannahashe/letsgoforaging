@@ -1,32 +1,52 @@
 {% load static %}
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Let’s Go Foraging{% endblock %}</title>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <a href="{% url 'home' %}">Let’s Go Foraging</a>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Main navigation">
+            <a class="site-logo" href="{% url 'home' %}">Let’s Go Foraging</a>
 
-        <ul>
-    <li><a href="{% url 'event_list' %}">Walks</a></li>
-    <li><a href="{% url 'blog_list' %}">Field Notes</a></li>
-    <li><a href="{% url 'gallery' %}">Gallery</a></li>
-    <li><a href="{% url 'about' %}">About</a></li>
-    <li><a href="{% url 'contact' %}">Contact</a></li>
-      </ul>
-      </nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'event_list' %}">Walks</a></li>
+                <li><a href="{% url 'blog_list' %}">Field Notes</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>{% block content %} {% endblock %}</main>
+    <main>
+        {% block content %}
+        {% endblock %}
 
-    <footer>
-      <p>&copy; Let’s Go Foraging</p>
+        <section class="site-cta">
+            <h2>Ready to join a walk?</h2>
+
+            <p>
+                Explore upcoming beginner-friendly foraging walks and book your
+                place through the event listing.
+            </p>
+
+            <a class="button" href="{% url 'event_list' %}">View upcoming walks</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div>
+            <p>&copy; {{ current_year }} Let’s Go Foraging</p>
+
+            <p>
+                Beginner-friendly foraging walks, seasonal wild food and local ecology.
+            </p>
+        </div>
     </footer>
-  </body>
+</body>
 </html>

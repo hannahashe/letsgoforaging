@@ -252,3 +252,57 @@ a[href*="book"]:focus {
 .prose p {
     margin-bottom: 1.25rem;
 }
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.site-nav {
+    gap: 1.5rem;
+}
+
+.site-logo {
+    color: var(--colour-accent-dark);
+}
+
+.nav-links a {
+    font-weight: 700;
+}
+
+.site-cta {
+    background: var(--colour-accent-dark);
+    color: white;
+    border-radius: 1.25rem;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.site-cta h2 {
+    margin-bottom: 0.75rem;
+}
+
+.site-cta p {
+    max-width: 680px;
+}
+
+.site-cta .button {
+    background: white;
+    color: var(--colour-accent-dark);
+}
+
+.site-cta .button:hover,
+.site-cta .button:focus {
+    background: var(--colour-bg);
+    color: var(--colour-accent-dark);
+}
+
+.site-footer {
+    margin-top: 2rem;
+}
+
+.site-footer div {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
