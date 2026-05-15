@@ -3,62 +3,70 @@
 {% block title %}{{ event.title }} | Let’s Go Foraging{% endblock %}
 
 {% block content %}
-<article>
+<article class="detail-page">
     <p>
-        <a href="{% url 'event_list' %}">&larr; Back to all walks</a>
+        <a class="back-link" href="{% url 'event_list' %}">&larr; Back to all walks</a>
     </p>
 
-    <h1>{{ event.title }}</h1>
+    <header class="detail-header">
+        <p class="eyebrow">Foraging walk</p>
 
-    <p>{{ event.short_description }}</p>
+        <h1>{{ event.title }}</h1>
 
-    <section>
+        <p class="hero-text">{{ event.short_description }}</p>
+    </header>
+
+    <section class="content-panel">
         <h2>Event details</h2>
 
-        <p>
-            <strong>Date:</strong>
-            {{ event.date|date:"l j F Y" }}
-        </p>
+        <div class="detail-meta">
+            <p>
+                <strong>Date</strong>
+                <span>{{ event.date|date:"l j F Y" }}</span>
+            </p>
 
-        <p>
-            <strong>Time:</strong>
-            {{ event.start_time|time:"g:i A" }}
-            {% if event.end_time %}
-                – {{ event.end_time|time:"g:i A" }}
+            <p>
+                <strong>Time</strong>
+                <span>
+                    {{ event.start_time|time:"g:i A" }}
+                    {% if event.end_time %}
+                        – {{ event.end_time|time:"g:i A" }}
+                    {% endif %}
+                </span>
+            </p>
+
+            <p>
+                <strong>Location</strong>
+                <span>{{ event.location }}</span>
+            </p>
+
+            {% if event.meeting_point %}
+                <p>
+                    <strong>Meeting point</strong>
+                    <span>{{ event.meeting_point }}</span>
+                </p>
             {% endif %}
-        </p>
 
-        <p>
-            <strong>Location:</strong>
-            {{ event.location }}
-        </p>
+            {% if event.price %}
+                <p>
+                    <strong>Price</strong>
+                    <span>£{{ event.price }}</span>
+                </p>
+            {% endif %}
+        </div>
 
-        {% if event.meeting_point %}
+        {% if event.ticket_url %}
             <p>
-                <strong>Meeting point:</strong>
-                {{ event.meeting_point }}
-            </p>
-        {% endif %}
-
-        {% if event.price %}
-            <p>
-                <strong>Price:</strong>
-                £{{ event.price }}
+                <a class="button" href="{{ event.ticket_url }}" target="_blank" rel="noopener">
+                    Book tickets
+                </a>
             </p>
         {% endif %}
     </section>
 
-    <section>
+    <section class="content-panel">
         <h2>About this walk</h2>
-        <p>{{ event.description|linebreaks }}</p>
+        {{ event.description|linebreaks }}
     </section>
-
-    {% if event.ticket_url %}
-        <p>
-            <a href="{{ event.ticket_url }}" target="_blank" rel="noopener">
-                Book tickets
-            </a>
-        </p>
-    {% endif %}
 </article>
 {% endblock %}
