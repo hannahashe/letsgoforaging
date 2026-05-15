@@ -306,3 +306,9 @@ a[href*="book"]:focus {
     max-width: var(--max-width);
     margin: 0 auto;
 }
+
+.nav-links a.active {
+    color: var(--colour-accent-dark);
+    border-bottom: 2px solid var(--colour-accent-dark);
+    padding-bottom: 0.2rem;
+}
