@@ -3,16 +3,50 @@
 {% block title %}Contact | Let’s Go Foraging{% endblock %}
 
 {% block content %}
-<section>
-    <h1>Contact</h1>
+<section class="page-intro">
+    <p class="eyebrow">Contact</p>
+
+    <h1>Get in touch</h1>
+
+    <p class="hero-text">
+        For questions about upcoming walks, private sessions, accessibility or
+        collaborations, please get in touch.
+    </p>
+</section>
+
+<section class="content-panel">
+    <h2>Enquiries</h2>
 
     <p>
-        For questions about upcoming walks, private sessions or accessibility,
-        please get in touch.
+        Email:
+        <a href="mailto:hello@example.com">hello@example.com</a>
     </p>
 
     <p>
-        Email: <a href="mailto:hello@example.com">hello@example.com</a>
+        You can replace this with your partner’s real contact email later.
+    </p>
+</section>
+
+<section class="content-panel">
+    <h2>Before you come on a walk</h2>
+
+    <p>
+        If you have any access needs, dietary questions, allergies or concerns
+        about the route, it is best to ask before booking so the walk can be as
+        clear and comfortable as possible.
+    </p>
+</section>
+
+<section class="content-panel">
+    <h2>Booking</h2>
+
+    <p>
+        Public walks are listed on the walks page, with booking links provided
+        for each event.
+    </p>
+
+    <p>
+        <a class="button" href="{% url 'event_list' %}">View upcoming walks</a>
     </p>
 </section>
 {% endblock %}
