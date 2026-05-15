@@ -11,6 +11,88 @@
         and wild food tasting in the local area.
     </p>
 
+    <p>
+        Join guided walks exploring seasonal wild food, responsible
+        foraging, local ecology and beginner-friendly plant identification.
+    </p>
+
     <a href="{% url 'event_list' %}">View upcoming walks</a>
-</section> 
+</section>
+
+<section>
+    <h2>Featured Walk</h2>
+
+    {% if featured_event %}
+        <article>
+            <h3>
+                <a href="{{ featured_event.get_absolute_url }}">
+                    {{ featured_event.title }}
+                </a>
+            </h3>
+
+            <p>
+                <strong>Date:</strong>
+                {{ featured_event.date|date:"l j F Y" }}
+            </p>
+
+            <p>{{ featured_event.short_description }}</p>
+
+            <p>
+                <a href="{{ featured_event.get_absolute_url }}">
+                    View walk details
+                </a>
+            </p>
+        </article>
+    {% else %}
+        <p>No featured walk is currently selected.</p>
+    {% endif %}
+</section>
+
+<section>
+    <h2>From the Field Notes</h2>
+
+    {% if featured_post %}
+        <article>
+            <h3>
+                <a href="{{ featured_post.get_absolute_url }}">
+                    {{ featured_post.title }}
+                </a>
+            </h3>
+
+            <p>{{ featured_post.excerpt }}</p>
+
+            <p>
+                <a href="{{ featured_post.get_absolute_url }}">
+                    Read article
+                </a>
+            </p>
+        </article>
+    {% else %}
+        <p>No featured field note is currently selected.</p>
+    {% endif %}
+</section>
+
+<section>
+    <h2>Gallery Preview</h2>
+
+    {% if featured_images %}
+        <div>
+            {% for image in featured_images %}
+                <figure>
+                    <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
+
+                    {% if image.caption %}
+                        <figcaption>{{ image.caption }}</figcaption>
+                    {% endif %}
+                </figure>
+            {% endfor %}
+        </div>
+
+        <p>
+            <a href="{% url 'gallery' %}">View the full gallery</a>
+        </p>
+    {% else %}
+        <p>No featured gallery images are currently selected.</p>
+    {% endif %}
+</section>
 {% endblock %}

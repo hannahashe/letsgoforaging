@@ -2,10 +2,30 @@ from django.shortcuts import get_object_or_404, render
 from .models import BlogPost, Event, GalleryImage
 
 
-
 def home(request):
-    """Display the website homepage."""
-    return render(request, "core/home.html")
+    """Display the website homepage with featured content."""
+    featured_event = Event.objects.filter(
+        is_published=True,
+        is_featured=True,
+    ).first()
+
+    featured_post = BlogPost.objects.filter(
+        is_published=True,
+        is_featured=True,
+    ).first()
+
+    featured_images = GalleryImage.objects.filter(
+        is_published=True,
+        is_featured=True,
+    )[:3]
+
+    context = {
+        "featured_event": featured_event,
+        "featured_post": featured_post,
+        "featured_images": featured_images,
+    }
+
+    return render(request, "core/home.html", context)
 
 
 def about(request):
