@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Let’s Go Foraging{% endblock %}</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="{% url 'home' %}">Let’s Go Foraging</a>
+
+        <ul>
+          <li><a href="#">Walks</a></li>
+          <li><a href="#">Field Notes</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>{% block content %} {% endblock %}</main>
+
+    <footer>
+      <p>&copy; Let’s Go Foraging</p>
+    </footer>
+  </body>
+</html>
