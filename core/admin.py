@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Event, GalleryImage
+from .models import BlogPost, Event, GalleryImage, Review
 
 
 @admin.register(Event)
@@ -47,4 +47,20 @@ class GalleryImageAdmin(admin.ModelAdmin):
     )
     list_filter = ("is_published", "is_featured", "created_at")
     search_fields = ("title", "alt_text", "caption")
+    ordering = ("-created_at",)
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    """Admin settings for customer reviews."""
+
+    list_display = (
+        "reviewer_name",
+        "rating",
+        "source",
+        "is_published",
+        "is_featured",
+        "created_at",
+    )
+    list_filter = ("rating", "source", "is_published", "is_featured")
+    search_fields = ("reviewer_name", "quote", "source")
     ordering = ("-created_at",)

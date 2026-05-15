@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import BlogPost, Event, GalleryImage
+from .models import BlogPost, Event, GalleryImage, Review
 
 
 def home(request):
@@ -19,10 +19,16 @@ def home(request):
         is_featured=True,
     )[:3]
 
+    featured_reviews = Review.objects.filter(
+        is_published=True,
+        is_featured=True,
+    )[:3]
+
     context = {
         "featured_event": featured_event,
         "featured_post": featured_post,
         "featured_images": featured_images,
+        "featured_reviews": featured_reviews,
     }
 
     return render(request, "core/home.html", context)

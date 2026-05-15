@@ -70,3 +70,25 @@ class GalleryImage(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Review(models.Model):
+    """A customer review or testimonial."""
+
+    reviewer_name = models.CharField(max_length=100)
+    quote = models.TextField()
+    rating = models.PositiveSmallIntegerField(default=5)
+    source = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Optional: where the review came from, e.g. Google, Facebook, Eventbrite.",
+    )
+    is_published = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.reviewer_name} - {self.rating} stars"
