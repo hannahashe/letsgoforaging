@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Event
 
 
 def home(request):
@@ -19,3 +20,14 @@ def contact(request):
 def gallery(request):
     """Display the gallery page."""
     return render(request, "core/gallery.html")
+
+
+def event_list(request):
+    """Display published upcoming foraging events."""
+    events = Event.objects.filter(is_published=True)
+
+    return render(
+        request,
+        "core/event_list.html",
+        {"events": events},
+    )
