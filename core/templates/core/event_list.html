@@ -41,6 +41,10 @@
 
                     <p>{{ event.short_description }}</p>
 
+                    <p>
+                        <a href="{{ event.get_absolute_url }}">View walk details</a>
+                    </p>
+
                     {% if event.price %}
                         <p>
                             <strong>Price:</strong>
