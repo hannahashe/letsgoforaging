@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ event.title }} | Let’s Go Foraging{% endblock %}
+{% block meta_description %}{{ event.short_description }}{% endblock %}
 
 {% block content %}
 <article class="detail-page">

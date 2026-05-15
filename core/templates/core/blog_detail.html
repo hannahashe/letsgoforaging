@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ post.title }} | Let’s Go Foraging{% endblock %}
+{% block meta_description %}{{ post.excerpt }}{% endblock %}
 
 {% block content %}
 <article class="detail-page">
