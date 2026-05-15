@@ -49,6 +49,38 @@
 </section>
 
 <section>
+    <h2>What People Say</h2>
+
+    {% if featured_reviews %}
+        <div>
+            {% for review in featured_reviews %}
+                <blockquote>
+                    <p>“{{ review.quote }}”</p>
+
+                    <footer>
+                        <strong>{{ review.reviewer_name }}</strong>
+
+                        {% if review.rating %}
+                            <span>
+                                — {{ review.rating }} stars
+                            </span>
+                        {% endif %}
+
+                        {% if review.source %}
+                            <span>
+                                via {{ review.source }}
+                            </span>
+                        {% endif %}
+                    </footer>
+                </blockquote>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No featured reviews are currently selected.</p>
+    {% endif %}
+</section>
+
+<section>
     <h2>From the Field Notes</h2>
 
     {% if featured_post %}
