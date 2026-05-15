@@ -29,3 +29,26 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         return reverse("event_detail", kwargs={"slug": self.slug})
+
+
+class BlogPost(models.Model):
+    """A blog post or article for the Field Notes section."""
+
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=220, unique=True)
+    excerpt = models.CharField(max_length=255)
+    body = models.TextField()
+    published_date = models.DateField()
+    is_published = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-published_date"]
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("blog_detail", kwargs={"slug": self.slug})
