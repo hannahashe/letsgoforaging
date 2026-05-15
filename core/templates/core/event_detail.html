@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }} | Let’s Go Foraging{% endblock %}
+
+{% block content %}
+<article>
+    <p>
+        <a href="{% url 'event_list' %}">&larr; Back to all walks</a>
+    </p>
+
+    <h1>{{ event.title }}</h1>
+
+    <p>{{ event.short_description }}</p>
+
+    <section>
+        <h2>Event details</h2>
+
+        <p>
+            <strong>Date:</strong>
+            {{ event.date|date:"l j F Y" }}
+        </p>
+
+        <p>
+            <strong>Time:</strong>
+            {{ event.start_time|time:"g:i A" }}
+            {% if event.end_time %}
+                – {{ event.end_time|time:"g:i A" }}
+            {% endif %}
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            {{ event.location }}
+        </p>
+
+        {% if event.meeting_point %}
+            <p>
+                <strong>Meeting point:</strong>
+                {{ event.meeting_point }}
+            </p>
+        {% endif %}
+
+        {% if event.price %}
+            <p>
+                <strong>Price:</strong>
+                £{{ event.price }}
+            </p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>About this walk</h2>
+        <p>{{ event.description|linebreaks }}</p>
+    </section>
+
+    {% if event.ticket_url %}
+        <p>
+            <a href="{{ event.ticket_url }}" target="_blank" rel="noopener">
+                Book tickets
+            </a>
+        </p>
+    {% endif %}
+</article>
+{% endblock %}
