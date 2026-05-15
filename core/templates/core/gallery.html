@@ -9,5 +9,23 @@
     <p>
         A seasonal collection of plants, walks, wild food and landscapes.
     </p>
+
+    {% if images %}
+        <div>
+            {% for image in images %}
+                <figure>
+                    <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
+
+                    {% if image.caption %}
+                        <figcaption>{{ image.caption }}</figcaption>
+                    {% endif %}
+                </figure>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>
+            There are no gallery images published yet. Please check back soon.
+        </p>
+    {% endif %}
 </section>
 {% endblock %}

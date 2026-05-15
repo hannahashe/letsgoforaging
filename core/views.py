@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import BlogPost, Event
+from .models import BlogPost, Event, GalleryImage
 
 
 
@@ -19,8 +19,14 @@ def contact(request):
 
 
 def gallery(request):
-    """Display the gallery page."""
-    return render(request, "core/gallery.html")
+    """Display published gallery images."""
+    images = GalleryImage.objects.filter(is_published=True)
+
+    return render(
+        request,
+        "core/gallery.html",
+        {"images": images},
+    )
 
 
 def event_list(request):
