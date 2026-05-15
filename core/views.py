@@ -15,6 +15,7 @@ def home(request):
     featured_event = Event.objects.filter(
         is_published=True,
         is_featured=True,
+        date__gte=date.today(),
     ).first()
 
     featured_post = BlogPost.objects.filter(
@@ -68,7 +69,11 @@ def gallery(request):
 
 def event_list(request):
     """Display published upcoming foraging events."""
-    events = Event.objects.filter(is_published=True)
+    # Show dates n=only greater or equal to today
+    events = Event.objects.filter(
+        is_published=True,
+        date__gte=date.today(),
+    )
 
     return render(
         request,
