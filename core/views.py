@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Event
+
 
 
 def home(request):
@@ -30,4 +31,15 @@ def event_list(request):
         request,
         "core/event_list.html",
         {"events": events},
+    )
+
+
+def event_detail(request, slug):
+    """Display a single published foraging event."""
+    event = get_object_or_404(Event, slug=slug, is_published=True)
+
+    return render(
+        request,
+        "core/event_detail.html",
+        {"event": event},
     )
