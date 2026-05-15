@@ -52,3 +52,21 @@ class BlogPost(models.Model):
 
     def get_absolute_url(self):
         return reverse("blog_detail", kwargs={"slug": self.slug})
+
+
+class GalleryImage(models.Model):
+    """An image displayed in the website gallery."""
+
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="gallery/")
+    alt_text = models.CharField(max_length=255)
+    caption = models.CharField(max_length=255, blank=True)
+    is_published = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.title

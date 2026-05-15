@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Event
+from .models import BlogPost, Event, GalleryImage
 
 
 @admin.register(Event)
@@ -34,3 +34,17 @@ class BlogPostAdmin(admin.ModelAdmin):
     search_fields = ("title", "excerpt", "body")
     prepopulated_fields = {"slug": ("title",)}
     ordering = ("-published_date",)
+
+@admin.register(GalleryImage)
+class GalleryImageAdmin(admin.ModelAdmin):
+    """Admin settings for gallery images."""
+
+    list_display = (
+        "title",
+        "is_published",
+        "is_featured",
+        "created_at",
+    )
+    list_filter = ("is_published", "is_featured", "created_at")
+    search_fields = ("title", "alt_text", "caption")
+    ordering = ("-created_at",)
