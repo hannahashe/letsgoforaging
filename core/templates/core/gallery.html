@@ -3,17 +3,19 @@
 {% block title %}Gallery | Let’s Go Foraging{% endblock %}
 
 {% block content %}
-<section>
+<section class="page-intro">
     <h1>Gallery</h1>
 
     <p>
         A seasonal collection of plants, walks, wild food and landscapes.
     </p>
+</section>
 
+<section>
     {% if images %}
-        <div>
+        <div class="card-grid gallery-grid">
             {% for image in images %}
-                <figure>
+                <figure class="card image-card">
                     <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
 
                     {% if image.caption %}

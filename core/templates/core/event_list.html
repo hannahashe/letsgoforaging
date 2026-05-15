@@ -3,18 +3,20 @@
 {% block title %}Walks | Let’s Go Foraging{% endblock %}
 
 {% block content %}
-<section>
+<section class="page-intro">
     <h1>Upcoming Walks</h1>
 
     <p>
         Beginner-friendly foraging walks focused on seasonal plant
         identification, wild food tasting and responsible foraging.
     </p>
+</section>
 
+<section>
     {% if events %}
-        <div>
+        <div class="card-grid">
             {% for event in events %}
-                <article>
+                <article class="card">
                     <h2>
                         <a href="{{ event.get_absolute_url }}">
                             {{ event.title }}
@@ -41,10 +43,6 @@
 
                     <p>{{ event.short_description }}</p>
 
-                    <p>
-                        <a href="{{ event.get_absolute_url }}">View walk details</a>
-                    </p>
-
                     {% if event.price %}
                         <p>
                             <strong>Price:</strong>
@@ -52,8 +50,12 @@
                         </p>
                     {% endif %}
 
+                    <p>
+                        <a href="{{ event.get_absolute_url }}">View walk details</a>
+                    </p>
+
                     {% if event.ticket_url %}
-                        <a href="{{ event.ticket_url }}" target="_blank" rel="noopener">
+                        <a class="button" href="{{ event.ticket_url }}" target="_blank" rel="noopener">
                             Book tickets
                         </a>
                     {% endif %}

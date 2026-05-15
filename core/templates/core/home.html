@@ -3,27 +3,31 @@
 {% block title %}Home | Let’s Go Foraging{% endblock %}
 
 {% block content %}
-<section>
-    <h1>Let’s Go Foraging</h1>
+<section class="hero">
+    <div>
+        <p class="eyebrow">Seasonal wild food walks</p>
 
-    <p>
-        Beginner-friendly foraging walks, plant identification
-        and wild food tasting in the local area.
-    </p>
+        <h1>Let’s Go Foraging</h1>
 
-    <p>
-        Join guided walks exploring seasonal wild food, responsible
-        foraging, local ecology and beginner-friendly plant identification.
-    </p>
+        <p class="hero-text">
+            Beginner-friendly foraging walks, plant identification
+            and wild food tasting in the local area.
+        </p>
 
-    <a href="{% url 'event_list' %}">View upcoming walks</a>
+        <p>
+            Join guided walks exploring seasonal wild food, responsible
+            foraging, local ecology and beginner-friendly plant identification.
+        </p>
+
+        <a class="button" href="{% url 'event_list' %}">View upcoming walks</a>
+    </div>
 </section>
 
 <section>
     <h2>Featured Walk</h2>
 
     {% if featured_event %}
-        <article>
+        <article class="card">
             <h3>
                 <a href="{{ featured_event.get_absolute_url }}">
                     {{ featured_event.title }}
@@ -52,9 +56,9 @@
     <h2>What People Say</h2>
 
     {% if featured_reviews %}
-        <div>
+        <div class="card-grid">
             {% for review in featured_reviews %}
-                <blockquote>
+                <blockquote class="card">
                     <p>“{{ review.quote }}”</p>
 
                     <footer>
@@ -84,7 +88,7 @@
     <h2>From the Field Notes</h2>
 
     {% if featured_post %}
-        <article>
+        <article class="card">
             <h3>
                 <a href="{{ featured_post.get_absolute_url }}">
                     {{ featured_post.title }}
@@ -108,9 +112,9 @@
     <h2>Gallery Preview</h2>
 
     {% if featured_images %}
-        <div>
+        <div class="card-grid">
             {% for image in featured_images %}
-                <figure>
+                <figure class="card image-card">
                     <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
 
                     {% if image.caption %}

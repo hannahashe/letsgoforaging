@@ -3,18 +3,20 @@
 {% block title %}Field Notes | Let’s Go Foraging{% endblock %}
 
 {% block content %}
-<section>
+<section class="page-intro">
     <h1>Field Notes</h1>
 
     <p>
         Seasonal notes, beginner foraging guides, wild food ideas and
         reflections from the path.
     </p>
+</section>
 
+<section>
     {% if posts %}
-        <div>
+        <div class="card-grid">
             {% for post in posts %}
-                <article>
+                <article class="card">
                     <h2>
                         <a href="{{ post.get_absolute_url }}">
                             {{ post.title }}
