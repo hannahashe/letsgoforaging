@@ -18,6 +18,60 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ("title", "short_description", "description", "location")
     prepopulated_fields = {"slug": ("title",)}
     ordering = ("date", "start_time")
+    readonly_fields = ("created_at", "updated_at")
+
+    fieldsets = (
+        (
+            "Main event details",
+            {
+                "fields": (
+                    "title",
+                    "slug",
+                    "short_description",
+                    "description",
+                )
+            },
+        ),
+        (
+            "Date, time and location",
+            {
+                "fields": (
+                    "date",
+                    "start_time",
+                    "end_time",
+                    "location",
+                    "meeting_point",
+                )
+            },
+        ),
+        (
+            "Booking information",
+            {
+                "fields": (
+                    "price",
+                    "ticket_url",
+                )
+            },
+        ),
+        (
+            "Publishing options",
+            {
+                "fields": (
+                    "is_published",
+                    "is_featured",
+                )
+            },
+        ),
+        (
+            "Timestamps",
+            {
+                "fields": (
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
+    )
 
 
 @admin.register(BlogPost)
@@ -34,6 +88,41 @@ class BlogPostAdmin(admin.ModelAdmin):
     search_fields = ("title", "excerpt", "body")
     prepopulated_fields = {"slug": ("title",)}
     ordering = ("-published_date",)
+    readonly_fields = ("created_at", "updated_at")
+
+    fieldsets = (
+        (
+            "Article content",
+            {
+                "fields": (
+                    "title",
+                    "slug",
+                    "excerpt",
+                    "body",
+                )
+            },
+        ),
+        (
+            "Publishing options",
+            {
+                "fields": (
+                    "published_date",
+                    "is_published",
+                    "is_featured",
+                )
+            },
+        ),
+        (
+            "Timestamps",
+            {
+                "fields": (
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
+    )
+
 
 @admin.register(GalleryImage)
 class GalleryImageAdmin(admin.ModelAdmin):
@@ -48,6 +137,39 @@ class GalleryImageAdmin(admin.ModelAdmin):
     list_filter = ("is_published", "is_featured", "created_at")
     search_fields = ("title", "alt_text", "caption")
     ordering = ("-created_at",)
+    readonly_fields = ("created_at",)
+
+    fieldsets = (
+        (
+            "Image details",
+            {
+                "fields": (
+                    "title",
+                    "image",
+                    "alt_text",
+                    "caption",
+                )
+            },
+        ),
+        (
+            "Publishing options",
+            {
+                "fields": (
+                    "is_published",
+                    "is_featured",
+                )
+            },
+        ),
+        (
+            "Timestamps",
+            {
+                "fields": (
+                    "created_at",
+                )
+            },
+        ),
+    )
+
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
@@ -64,3 +186,35 @@ class ReviewAdmin(admin.ModelAdmin):
     list_filter = ("rating", "source", "is_published", "is_featured")
     search_fields = ("reviewer_name", "quote", "source")
     ordering = ("-created_at",)
+    readonly_fields = ("created_at",)
+
+    fieldsets = (
+        (
+            "Review content",
+            {
+                "fields": (
+                    "reviewer_name",
+                    "quote",
+                    "rating",
+                    "source",
+                )
+            },
+        ),
+        (
+            "Publishing options",
+            {
+                "fields": (
+                    "is_published",
+                    "is_featured",
+                )
+            },
+        ),
+        (
+            "Timestamps",
+            {
+                "fields": (
+                    "created_at",
+                )
+            },
+        ),
+    )
