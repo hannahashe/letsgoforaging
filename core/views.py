@@ -85,6 +85,23 @@ def event_list(request):
     )
 
 
+def event_archive(request):
+    """Display published past foraging events."""
+    events = Event.objects.filter(
+        is_published=True,
+        date__lt=date.today(),
+    ).order_by("-date", "-start_time")
+
+    return render(
+        request,
+        "core/event_archive.html",
+        {
+            **site_context(),
+            "events": events,
+        },
+    )
+
+
 def event_detail(request, slug):
     """Display a single published foraging event."""
     event = get_object_or_404(Event, slug=slug, is_published=True)

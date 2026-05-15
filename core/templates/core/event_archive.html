@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Past Walks | Let’s Go Foraging{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+    <h1>Past Walks</h1>
+
+    <p>
+        A small archive of previous foraging walks, seasonal sessions and
+        wild food events.
+    </p>
+
+    <p>
+        <a href="{% url 'event_list' %}">&larr; Back to upcoming walks</a>
+    </p>
+</section>
+
+<section>
+    {% if events %}
+        <div class="card-grid">
+            {% for event in events %}
+                <article class="card">
+                    <h2>{{ event.title }}</h2>
+
+                    <p>
+                        <strong>Date:</strong>
+                        {{ event.date|date:"l j F Y" }}
+                    </p>
+
+                    <p>
+                        <strong>Location:</strong>
+                        {{ event.location }}
+                    </p>
+
+                    <p>{{ event.short_description }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>
+            There are no past walks listed yet.
+        </p>
+    {% endif %}
+</section>
+{% endblock %}
