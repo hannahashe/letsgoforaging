@@ -15,7 +15,11 @@
         <div>
             {% for event in events %}
                 <article>
-                    <h2>{{ event.title }}</h2>
+                    <h2>
+                        <a href="{{ event.get_absolute_url }}">
+                            {{ event.title }}
+                        </a>
+                    </h2>
 
                     <p>
                         <strong>Date:</strong>
