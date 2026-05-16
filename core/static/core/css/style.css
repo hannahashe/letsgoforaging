@@ -14,6 +14,8 @@
   --colour-border: #cbbf9f;
   --colour-border-dark: #8a7b5c;
 
+  --hero-image: url("https://images.pexels.com/photos/35030114/pexels-photo-35030114.jpeg");
+
   --font-body: "Arapey", Georgia, "Times New Roman", serif;
   --font-display: "Oswald", Arial, Helvetica, sans-serif;
   --font-hand: "Playwrite NO", cursive;
@@ -129,14 +131,14 @@ main {
   padding: 2.5rem var(--space-page);
 }
 
-main::before {
+/* main::before {
   content: "";
   display: block;
   width: min(100%, 760px);
   height: 1px;
   margin: 0 0 2rem;
   background: linear-gradient(to right, var(--colour-border-dark), transparent);
-}
+} */
 
 section,
 article {
@@ -172,6 +174,29 @@ h3 {
   font-size: 1.45rem;
   letter-spacing: 0.03em;
   text-transform: lowercase;
+}
+
+section > h2 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  color: var(--colour-text);
+}
+
+section > h2::before,
+section > h2::after {
+  content: "";
+  flex: 1;
+  border-top: 2px solid rgba(71, 63, 47, 0.55);
+}
+
+section > h2::before {
+  max-width: 4rem;
+}
+
+section > h2::after {
+  max-width: 100%;
 }
 
 /* Content */
@@ -249,28 +274,16 @@ a[href*="book"]:focus {
   color: var(--colour-accent-dark);
 }
 
-/* Hero Section */
-
-.hero {
-  min-height: 55vh;
-  display: grid;
-  align-items: center;
-  padding: 3rem 0;
-}
-
-.hero-text {
-  max-width: 700px;
-  font-size: 1.25rem;
-}
-
 /* Eyebrow */
 
 .eyebrow {
   margin-bottom: 0.5rem;
-  color: var(--colour-accent);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  color: var(--colour-rust);
+  font-family: var(--font-hand);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: lowercase;
 }
 
 /* Page Intro */
@@ -458,32 +471,50 @@ a[href*="book"]:focus {
 
 /* Botanical divider */
 
-section > h2::after {
-  content: "";
-  display: block;
-  width: 4rem;
-  height: 1px;
-  margin-top: 0.75rem;
-  background: var(--colour-rust);
-}
-
 /* Hero Section */
 
 .hero {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 250, 240, 0.88),
-    rgba(244, 236, 216, 0.72)
-  );
+  min-height: 64vh;
+  display: grid;
+  place-items: center;
+  padding: 4rem 1.5rem;
+  background:
+    linear-gradient(rgba(47, 42, 31, 0.25), rgba(47, 42, 31, 0.35)),
+    var(--hero-image);
+  background-size: cover;
+  background-position: center;
   border: 1px solid var(--colour-border-dark);
   border-radius: 0.35rem;
-  padding: 3rem 1.5rem;
-  box-shadow: 0 16px 40px rgba(47, 42, 31, 0.1);
+  box-shadow: 0 16px 40px rgba(47, 42, 31, 0.16);
+  overflow: hidden;
+}
+
+.hero > div {
+  width: min(100%, 620px);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  color: white;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: rgba(47, 42, 31, 0.34);
+  backdrop-filter: blur(1px);
+}
+
+.hero h1,
+.hero p,
+.hero .eyebrow {
+  color: white;
+}
+
+.hero .hero-text {
+  max-width: none;
+  padding-left: 0;
+  border-left: 0;
 }
 
 .hero::after {
-  content: "Est. locally · seasonal walks · wild food";
+  content: "seasonal walks · wild food · plant identification";
   position: absolute;
   right: 1.25rem;
   bottom: 1rem;
@@ -492,7 +523,7 @@ section > h2::after {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--colour-muted);
+  color: rgba(255, 255, 255, 0.86);
 }
 
 .hero-text {
