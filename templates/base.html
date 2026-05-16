@@ -1,82 +1,95 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Let’s Go Foraging{% endblock %}</title>
-    <meta name="description" content="{% block meta_description %}Beginner-friendly foraging walks, seasonal wild food and plant identification in the local area.{% endblock %}">
-    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
-</head>
-<body>
+    <meta
+      name="description"
+      content="{% block meta_description %}Beginner-friendly foraging walks, seasonal wild food and plant identification in the local area.{% endblock %}"
+    />
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
+  </head>
+  <body>
     <header class="site-header">
-        <nav class="site-nav" aria-label="Main navigation">
-            <a class="site-logo" href="{% url 'home' %}">Let’s Go Foraging</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="site-logo" href="{% url 'home' %}">Let’s Go Foraging</a>
 
-            <ul class="nav-links">
-    <li>
-        <a href="{% url 'event_list' %}"
-           class="{% if request.path|slice:':7' == '/walks/' %}active{% endif %}">
-            Walks
-        </a>
-    </li>
+        <ul class="nav-links">
+          <li>
+            <a
+              href="{% url 'event_list' %}"
+              class="{% if request.path|slice:':7' == '/walks/' %}active{% endif %}"
+            >
+              Walks
+            </a>
+          </li>
 
-    <li>
-        <a href="{% url 'blog_list' %}"
-           class="{% if request.path|slice:':13' == '/field-notes/' %}active{% endif %}">
-            Field Notes
-        </a>
-    </li>
+          <li>
+            <a
+              href="{% url 'blog_list' %}"
+              class="{% if request.path|slice:':13' == '/field-notes/' %}active{% endif %}"
+            >
+              Field Notes
+            </a>
+          </li>
 
-    <li>
-        <a href="{% url 'gallery' %}"
-           class="{% if request.path == '/gallery/' %}active{% endif %}">
-            Gallery
-        </a>
-    </li>
+          <li>
+            <a
+              href="{% url 'gallery' %}"
+              class="{% if request.path == '/gallery/' %}active{% endif %}"
+            >
+              Gallery
+            </a>
+          </li>
 
-    <li>
-        <a href="{% url 'about' %}"
-           class="{% if request.path == '/about/' %}active{% endif %}">
-            About
-        </a>
-    </li>
+          <li>
+            <a
+              href="{% url 'about' %}"
+              class="{% if request.path == '/about/' %}active{% endif %}"
+            >
+              About
+            </a>
+          </li>
 
-    <li>
-        <a href="{% url 'contact' %}"
-           class="{% if request.path == '/contact/' %}active{% endif %}">
-            Contact
-        </a>
-    </li>
-    </ul>
-        </nav>
+          <li>
+            <a
+              href="{% url 'contact' %}"
+              class="{% if request.path == '/contact/' %}active{% endif %}"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <main>
-        {% block content %}
-        {% endblock %}
+    <main id="main-content">
+      {% block content %} {% endblock %}
 
-        <section class="site-cta">
-            <h2>Ready to join a walk?</h2>
+      <section class="site-cta">
+        <h2>Ready to join a walk?</h2>
 
-            <p>
-                Explore upcoming beginner-friendly foraging walks and book your
-                place through the event listing.
-            </p>
+        <p>
+          Explore upcoming beginner-friendly foraging walks and book your place
+          through the event listing.
+        </p>
 
-            <a class="button" href="{% url 'event_list' %}">View upcoming walks</a>
-        </section>
+        <a class="button" href="{% url 'event_list' %}">View upcoming walks</a>
+      </section>
     </main>
 
     <footer class="site-footer">
-        <div>
-            <p>&copy; {{ current_year }} Let’s Go Foraging</p>
+      <div>
+        <p>&copy; {{ current_year }} Let’s Go Foraging</p>
 
-            <p>
-                Beginner-friendly foraging walks, seasonal wild food and local ecology.
-            </p>
-        </div>
+        <p>
+          Beginner-friendly foraging walks, seasonal wild food and local
+          ecology.
+        </p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>
