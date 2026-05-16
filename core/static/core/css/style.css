@@ -35,6 +35,29 @@ body {
     var(--colour-bg);
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.28;
+  background-image:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(47, 42, 31, 0.08) 0 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(47, 42, 31, 0.06) 0 1px,
+      transparent 1px
+    );
+  background-size:
+    28px 28px,
+    42px 42px;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -99,7 +122,16 @@ nav,
 main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2rem var(--space-page);
+  padding: 2.5rem var(--space-page);
+}
+
+main::before {
+  content: "";
+  display: block;
+  width: min(100%, 760px);
+  height: 1px;
+  margin: 0 0 2rem;
+  background: linear-gradient(to right, var(--colour-border-dark), transparent);
 }
 
 section,
@@ -166,7 +198,7 @@ figcaption {
 
 /* Footer */
 
-footer {
+.site-footer {
   background: var(--colour-surface);
   border-top: 1px solid var(--colour-border);
   padding: 1.5rem var(--space-page);
@@ -181,12 +213,17 @@ a[href*="ticket"],
 a[href*="eventbrite"],
 a[href*="book"] {
   display: inline-block;
-  background: var(--colour-accent);
+  background: var(--colour-accent-dark);
   color: white;
   padding: 0.7rem 1rem;
-  border-radius: 999px;
+  border: 1px solid var(--colour-accent-dark);
+  border-radius: 0.2rem;
   text-decoration: none;
+  font-family: var(--font-ui);
   font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 0 var(--colour-border-dark);
 }
 
 .button:hover,
@@ -197,8 +234,8 @@ a[href*="eventbrite"]:hover,
 a[href*="eventbrite"]:focus,
 a[href*="book"]:hover,
 a[href*="book"]:focus {
-  background: var(--colour-accent-dark);
-  color: white;
+  background: var(--colour-surface);
+  color: var(--colour-accent-dark);
 }
 
 /* Hero Section */
@@ -245,15 +282,21 @@ a[href*="book"]:focus {
 }
 
 .card::before {
-  content: "field note";
+  content: "specimen note";
   display: inline-block;
   margin-bottom: 0.75rem;
   font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--colour-rust);
+}
+
+.card h2,
+.card h3 {
+  border-bottom: 1px solid rgba(138, 123, 92, 0.35);
+  padding-bottom: 0.5rem;
 }
 
 /* Image Cards */
@@ -266,7 +309,17 @@ a[href*="book"]:focus {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 0.75rem;
+  border-radius: 0.15rem;
+  border: 1px solid var(--colour-border);
+  padding: 0.35rem;
+  background: #fffdf6;
+}
+
+.image-card figcaption {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(138, 123, 92, 0.35);
+  padding-top: 0.75rem;
 }
 
 /* Detail Page */
@@ -397,4 +450,95 @@ section > h2::after {
   height: 1px;
   margin-top: 0.75rem;
   background: var(--colour-rust);
+}
+
+/* Hero Section */
+
+.hero {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 250, 240, 0.88),
+    rgba(244, 236, 216, 0.72)
+  );
+  border: 1px solid var(--colour-border-dark);
+  border-radius: 0.35rem;
+  padding: 3rem 1.5rem;
+  box-shadow: 0 16px 40px rgba(47, 42, 31, 0.1);
+}
+
+.hero::after {
+  content: "Est. locally · seasonal walks · wild food";
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--colour-muted);
+}
+
+.hero-text {
+  position: relative;
+  padding-left: 1rem;
+  border-left: 3px solid var(--colour-rust);
+}
+
+.page-intro .hero-text::before,
+.detail-header .hero-text::before {
+  content: "Note:";
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--colour-rust);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+main,
+main section,
+main article,
+main blockquote,
+main figure,
+main p,
+main h1,
+main h2,
+main h3 {
+  color: var(--colour-text);
+}
+
+.site-cta,
+.site-cta h2,
+.site-cta p {
+  color: white;
+}
+
+.site-cta .button {
+  color: var(--colour-accent-dark);
+}
+
+/* Reviews Styling */
+
+blockquote.card {
+  border-left-color: var(--colour-rust);
+}
+
+blockquote.card p:first-of-type {
+  font-size: 1.15rem;
+  font-style: italic;
+}
+
+blockquote.card footer {
+  background: transparent;
+  border-top: 1px solid rgba(138, 123, 92, 0.35);
+  margin-top: 1rem;
+  padding: 0.75rem 0 0;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--colour-muted);
 }

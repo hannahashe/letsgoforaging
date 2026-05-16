@@ -1,135 +1,112 @@
 {% extends "base.html" %}
-
-{% block title %}Home | Let’s Go Foraging{% endblock %}
-{% block meta_description %}Beginner-friendly foraging walks, plant identification and wild food tasting in the local area.{% endblock %}
-
+{% block title %}Home | Let’s Go Foraging
+{% endblock %}
+{% block meta_description %}
+Beginner-friendly foraging walks, plant
+identification and wild food tasting in the local area.
+{% endblock %}
 {% block content %}
 <section class="hero">
-    <div>
-        <p class="eyebrow">Seasonal wild food walks</p>
-
-        <h1>Let’s Go Foraging</h1>
-
-        <p class="hero-text">
-            Beginner-friendly foraging walks, plant identification
-            and wild food tasting in the local area.
-        </p>
-
-        <p>
-            Join guided walks exploring seasonal wild food, responsible
-            foraging, local ecology and beginner-friendly plant identification.
-        </p>
-
-        <a class="button" href="{% url 'event_list' %}">View upcoming walks</a>
-    </div>
+  <div>
+    <p class="eyebrow">Seasonal wild food walks</p>
+    <h1>Let’s Go Foraging</h1>
+    <p class="hero-text">
+      Beginner-friendly foraging walks, plant identification and wild food
+      tasting in the local area.
+    </p>
+    <p>
+      Join guided walks exploring seasonal wild food, responsible foraging,
+      local ecology and beginner-friendly plant identification.
+    </p>
+    <a class="button" href="{% url 'event_list' %}">View upcoming walks</a>
+  </div>
 </section>
 
 <section>
-    <h2>Featured Walk</h2>
+  <h2>Featured Walk</h2>
 
-    {% if featured_event %}
-        <article class="card">
-            <h3>
-                <a href="{{ featured_event.get_absolute_url }}">
-                    {{ featured_event.title }}
-                </a>
-            </h3>
-
-            <p>
-                <strong>Date:</strong>
-                {{ featured_event.date|date:"l j F Y" }}
-            </p>
-
-            <p>{{ featured_event.short_description }}</p>
-
-            <p>
-                <a href="{{ featured_event.get_absolute_url }}">
-                    View walk details
-                </a>
-            </p>
-        </article>
-    {% else %}
-        <p>No featured walk is currently selected.</p>
-    {% endif %}
+  {% if featured_event %}
+  <article class="card">
+    <h3>
+      <a href="{{ featured_event.get_absolute_url }}">
+        {{ featured_event.title }}
+      </a>
+    </h3>
+    <p>
+      <strong>Date:</strong>
+      {{ featured_event.date|date:"l j F Y" }}
+    </p>
+    <p>{{ featured_event.short_description }}</p>
+    <p>
+      <a href="{{ featured_event.get_absolute_url }}"> View walk details </a>
+    </p>
+  </article>
+  {% else %}
+  <p>No featured walk is currently selected.</p>
+  {% endif %}
 </section>
 
 <section>
-    <h2>What People Say</h2>
-
-    {% if featured_reviews %}
-        <div class="card-grid">
-            {% for review in featured_reviews %}
-                <blockquote class="card">
-                    <p>“{{ review.quote }}”</p>
-
-                    <footer>
-                        <strong>{{ review.reviewer_name }}</strong>
-
-                        {% if review.rating %}
-                            <span>
-                                — {{ review.rating }} stars
-                            </span>
-                        {% endif %}
-
-                        {% if review.source %}
-                            <span>
-                                via {{ review.source }}
-                            </span>
-                        {% endif %}
-                    </footer>
-                </blockquote>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>No featured reviews are currently selected.</p>
-    {% endif %}
+  <h2>What People Say</h2>
+  {% if featured_reviews %}
+  <div class="card-grid">
+    {% for review in featured_reviews %}
+    <blockquote class="card">
+      <p>“{{ review.quote }}”</p>
+      <footer>
+        <strong>{{ review.reviewer_name }}</strong>
+        {% if review.rating %}
+        <span> — {{ review.rating }} stars </span>
+        {% endif %} {% if review.source %}
+        <span> via {{ review.source }} </span>
+        {% endif %}
+      </footer>
+    </blockquote>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No featured reviews are currently selected.</p>
+  {% endif %}
 </section>
 
 <section>
-    <h2>From the Field Notes</h2>
-
-    {% if featured_post %}
-        <article class="card">
-            <h3>
-                <a href="{{ featured_post.get_absolute_url }}">
-                    {{ featured_post.title }}
-                </a>
-            </h3>
-
-            <p>{{ featured_post.excerpt }}</p>
-
-            <p>
-                <a href="{{ featured_post.get_absolute_url }}">
-                    Read article
-                </a>
-            </p>
-        </article>
-    {% else %}
-        <p>No featured field note is currently selected.</p>
-    {% endif %}
+  <h2>From the Field Notes</h2>
+  {% if featured_post %}
+  <article class="card">
+    <h3>
+      <a href="{{ featured_post.get_absolute_url }}">
+        {{ featured_post.title }}
+      </a>
+    </h3>
+    <p>{{ featured_post.excerpt }}</p>
+    <p>
+      <a href="{{ featured_post.get_absolute_url }}"> Read article </a>
+    </p>
+  </article>
+  {% else %}
+  <p>No featured field note is currently selected.</p>
+  {% endif %}
 </section>
 
 <section>
-    <h2>Gallery Preview</h2>
+  <h2>Gallery Preview</h2>
+  {% if featured_images %}
+  <div class="card-grid">
+    {% for image in featured_images %}
+    <figure class="card image-card">
+      <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" />
+      {% if image.caption %}
+      <figcaption>{{ image.caption }}</figcaption>
+      {% endif %}
+    </figure>
+    {% endfor %}
+  </div>
 
-    {% if featured_images %}
-        <div class="card-grid">
-            {% for image in featured_images %}
-                <figure class="card image-card">
-                    <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
-
-                    {% if image.caption %}
-                        <figcaption>{{ image.caption }}</figcaption>
-                    {% endif %}
-                </figure>
-            {% endfor %}
-        </div>
-
-        <p>
-            <a href="{% url 'gallery' %}">View the full gallery</a>
-        </p>
-    {% else %}
-        <p>No featured gallery images are currently selected.</p>
-    {% endif %}
+  <p>
+    <a href="{% url 'gallery' %}">View the full gallery</a>
+  </p>
+  {% else %}
+  <p>No featured gallery images are currently selected.</p>
+  {% endif %}
 </section>
 {% endblock %}
