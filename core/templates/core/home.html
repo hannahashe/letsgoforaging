@@ -94,7 +94,7 @@ identification and wild food tasting in the local area.
   <div class="card-grid">
     {% for image in featured_images %}
     <figure class="card image-card">
-      <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" />
+      <img width="200px" src="{{ image.image.url }}" alt="{{ image.alt_text }}" />
       {% if image.caption %}
       <figcaption>{{ image.caption }}</figcaption>
       {% endif %}
