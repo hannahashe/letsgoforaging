@@ -1,14 +1,25 @@
+/* Variables */
+
 :root {
-  --colour-bg: #f7f3e8;
+  --colour-bg: #f4ecd8;
   --colour-surface: #fffaf0;
-  --colour-text: #243024;
-  --colour-muted: #5f6f5f;
-  --colour-accent: #3f6b3f;
-  --colour-accent-dark: #294829;
-  --colour-border: #d8cfbd;
+  --colour-paper: #fbf4e3;
+  --colour-text: #2f2a1f;
+  --colour-muted: #6f6654;
+  --colour-accent: #526f3d;
+  --colour-accent-dark: #2f4625;
+  --colour-rust: #9a5b32;
+  --colour-border: #cbbf9f;
+  --colour-border-dark: #8a7b5c;
+
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-ui: Arial, Helvetica, sans-serif;
+
   --space-page: 1.25rem;
   --max-width: 1100px;
 }
+
+/* Global Styles */
 
 * {
   box-sizing: border-box;
@@ -16,10 +27,12 @@
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-body);
+  line-height: 1.65;
   color: var(--colour-text);
-  background: var(--colour-bg);
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.45), rgba(255, 250, 240, 0.45)),
+    var(--colour-bg);
 }
 
 img {
@@ -38,9 +51,11 @@ a:focus {
 }
 
 header {
-  background: var(--colour-surface);
-  border-bottom: 1px solid var(--colour-border);
+  background: rgba(251, 244, 227, 0.96);
+  border-bottom: 1px solid var(--colour-border-dark);
 }
+
+/* Navigation & Sections */
 
 nav {
   max-width: var(--max-width);
@@ -72,6 +87,15 @@ nav a {
   text-decoration: none;
 }
 
+nav,
+.nav-links,
+.button,
+.eyebrow,
+.back-link,
+.site-footer {
+  font-family: var(--font-ui);
+}
+
 main {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -83,29 +107,41 @@ article {
   margin-bottom: 2.5rem;
 }
 
+/* Headings */
+
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: clamp(2.25rem, 8vw, 4.5rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   margin-bottom: 1rem;
 }
 
 h2 {
   margin-top: 0;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
+
+h3 {
+  font-size: 1.35rem;
+}
+
+/* Content */
 
 article,
 blockquote,
-figure {
-  background: var(--colour-surface);
+figure,
+.content-panel {
+  background: var(--colour-paper);
   border: 1px solid var(--colour-border);
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 0.35rem;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(47, 42, 31, 0.08);
 }
 
 blockquote {
@@ -128,6 +164,8 @@ figcaption {
   font-size: 0.95rem;
 }
 
+/* Footer */
+
 footer {
   background: var(--colour-surface);
   border-top: 1px solid var(--colour-border);
@@ -135,6 +173,8 @@ footer {
   text-align: center;
   color: var(--colour-muted);
 }
+
+/* Buttons */
 
 .button,
 a[href*="ticket"],
@@ -161,6 +201,8 @@ a[href*="book"]:focus {
   color: white;
 }
 
+/* Hero Section */
+
 .hero {
   min-height: 55vh;
   display: grid;
@@ -173,6 +215,8 @@ a[href*="book"]:focus {
   font-size: 1.25rem;
 }
 
+/* Eyebrow */
+
 .eyebrow {
   margin-bottom: 0.5rem;
   color: var(--colour-accent);
@@ -181,9 +225,13 @@ a[href*="book"]:focus {
   text-transform: uppercase;
 }
 
+/* Page Intro */
+
 .page-intro {
   max-width: 760px;
 }
+
+/* Card Grid */
 
 .card-grid {
   display: grid;
@@ -192,8 +240,23 @@ a[href*="book"]:focus {
 }
 
 .card {
-  height: 100%;
+  position: relative;
+  border-left: 4px solid var(--colour-accent);
 }
+
+.card::before {
+  content: "field note";
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--colour-rust);
+}
+
+/* Image Cards */
 
 .image-card {
   overflow: hidden;
@@ -206,6 +269,8 @@ a[href*="book"]:focus {
   border-radius: 0.75rem;
 }
 
+/* Detail Page */
+
 .detail-page {
   max-width: 860px;
   margin: 0 auto;
@@ -215,6 +280,8 @@ a[href*="book"]:focus {
   margin-bottom: 2rem;
 }
 
+/* Content Panel */
+
 .content-panel {
   background: var(--colour-surface);
   border: 1px solid var(--colour-border);
@@ -222,6 +289,8 @@ a[href*="book"]:focus {
   padding: 1.25rem;
   margin-bottom: 1.5rem;
 }
+
+/* Detail Meta */
 
 .detail-meta {
   display: grid;
@@ -238,12 +307,16 @@ a[href*="book"]:focus {
   color: var(--colour-accent-dark);
 }
 
+/* Back Link */
+
 .back-link {
   display: inline-block;
   margin-bottom: 1rem;
   font-weight: 700;
   text-decoration: none;
 }
+
+/* Blog Styling */
 
 .prose {
   font-size: 1.05rem;
@@ -252,6 +325,8 @@ a[href*="book"]:focus {
 .prose p {
   margin-bottom: 1.25rem;
 }
+
+/* Further Site Styling */
 
 .site-header {
   position: sticky;
@@ -311,4 +386,15 @@ a[href*="book"]:focus {
   color: var(--colour-accent-dark);
   border-bottom: 2px solid var(--colour-accent-dark);
   padding-bottom: 0.2rem;
+}
+
+/* Botanical divider */
+
+section > h2::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 1px;
+  margin-top: 0.75rem;
+  background: var(--colour-rust);
 }
